@@ -1,67 +1,33 @@
 <!doctype html>
-<html lang="id">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Kuis Digital Citizen</title>
+<html lang="id"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Kuis Digital Citizen dan Citizen Journalism</title>
 <style>
-:root{--pink:#d77d9b;--pale:#fff4f5;--cream:#fffaf0;--ink:#513c48;--green:#e8f5ec;--red:#fff0f0}
-*{box-sizing:border-box}
-body{margin:0;padding:24px;background:linear-gradient(135deg,#fff7f4,#fdeaf1);font-family:Arial,sans-serif;color:var(--ink)}
-main{max-width:760px;margin:auto;background:#fffdfb;border:1px solid #f1d7df;border-radius:22px;padding:clamp(20px,4vw,36px);box-shadow:0 10px 35px #8e52631c}
-.kicker{color:#b45d7d;font-weight:700;letter-spacing:.08em;text-transform:uppercase;font-size:.78rem}
-h1{margin:.5rem 0;font-size:clamp(1.5rem,4vw,2.2rem)}
-.intro{line-height:1.6}
-.question{font-size:1.15rem;line-height:1.55;font-weight:700;margin:24px 0 16px}
-.answers{display:grid;gap:10px}
-button.answer{width:100%;text-align:left;padding:15px 16px;border:1px solid #e8cbd5;border-radius:14px;background:#fff;color:var(--ink);font-size:1rem;line-height:1.45;cursor:pointer;transition:.15s}
-button.answer:hover:not(:disabled){border-color:var(--pink);background:#fff6f8}
-button.answer:focus-visible{outline:3px solid #d77d9b;outline-offset:2px}
-button.answer:disabled{cursor:default}
-.answer.correct{background:var(--green);border-color:#62a878}
-.answer.wrong{background:var(--red);border-color:#d77d7d}
-.feedback{margin-top:16px;padding:16px;border-radius:14px;line-height:1.6;display:none}
-.feedback.show{display:block}
-.feedback.good{background:var(--green)}
-.feedback.bad{background:var(--red)}
-.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
-.actions button{border:0;border-radius:999px;padding:11px 18px;background:var(--pink);color:white;font-weight:700;cursor:pointer}
-.note{font-size:.86rem;color:#806b76;line-height:1.5;margin-top:22px}
+*{box-sizing:border-box}body{margin:0;padding:22px 14px;background:linear-gradient(135deg,#fff0f6,#fffaf3);font:16px Arial,sans-serif;color:#493642}.wrap{max-width:700px;margin:auto}header{text-align:center;padding:18px}small{color:#9e3d68;font-weight:bold;letter-spacing:1px}h1{color:#87375c;font-size:clamp(25px,5vw,36px);line-height:1.2}header p{line-height:1.5}.card{background:#fff;border:1px solid #f3d4e0;border-radius:20px;padding:22px;box-shadow:0 8px 25px #9e3d6810}.meta{display:flex;justify-content:space-between;gap:8px;color:#9e3d68;font-size:12px;font-weight:bold;margin-bottom:16px}h2{font-size:21px;line-height:1.4}.option{display:block;width:100%;text-align:left;margin:10px 0;padding:14px;border:1.5px solid #efd4df;border-radius:12px;background:#fffafc;color:#493642;font-size:15px;line-height:1.4;cursor:pointer}.option:disabled{cursor:default}.correct{background:#effaf3!important;border-color:#6ab38d!important}.wrong{background:#fff0f1!important;border-color:#e58b9a!important}.feedback{display:none;margin-top:14px;padding:13px;border-radius:12px;line-height:1.5;font-size:14px}.feedback.show{display:block}.good{background:#effaf3;color:#205c3f}.bad{background:#fff0f1;color:#873342}.actions{text-align:right;margin-top:18px}button.action{background:#d85f91;color:white;border:0;border-radius:30px;padding:12px 18px;font-weight:bold;cursor:pointer}button:disabled{opacity:.5}.progress{height:7px;background:#f3d6e2;border-radius:9px;margin:0 0 18px;overflow:hidden}#bar{height:100%;background:#d85f91;width:0}#result{display:none;text-align:center;line-height:1.6}.score{font-size:40px;color:#9e3d68;font-weight:bold}footer{text-align:center;color:#876b7a;font-size:12px;margin:18px}
 </style>
-</head>
-<body>
-<main>
-  <div class="kicker">Kuis interaktif • Digital Citizen & Citizen Journalism</div>
-  <h1>Yuk, Uji Kemampuanmu!</h1>
-  <p class="intro">Pilih satu jawaban. Setelah diklik, kamu akan langsung melihat apakah jawabanmu benar beserta penjelasannya.</p>
-  <div class="question">Jika kamu menemukan video suatu kejadian yang tidak mencantumkan waktu dan lokasi, apa yang sebaiknya dilakukan sebelum membagikannya?</div>
-  <div class="answers" id="answers">
-    <button class="answer" data-value="A">A. Langsung membagikannya agar orang lain segera tahu.</button>
-    <button class="answer" data-value="B">B. Memeriksa sumber, waktu, lokasi, dan membandingkannya dengan sumber tepercaya.</button>
-    <button class="answer" data-value="C">C. Memercayainya karena video terlihat nyata.</button>
-    <button class="answer" data-value="D">D. Menambahkan keterangan sendiri berdasarkan perkiraan.</button>
-  </div>
-  <div id="feedback" class="feedback" role="status" aria-live="polite"></div>
-  <div class="actions"><button id="retry" type="button">Coba lagi</button></div>
-  <p class="note">Kuis ini menguatkan dua materi: berpikir kritis sebagai digital citizen dan verifikasi informasi dalam citizen journalism.</p>
-</main>
+<div class="wrap"><header><small>KUIS INTERAKTIF · 3 PERTANYAAN</small><h1>Digital Citizen &amp;<br>Citizen Journalism</h1><p>Seberapa cerdas kamu bermedia digital? Yuk, uji pemahamanmu!</p></header>
+<div class="progress"><div id="bar"></div></div>
+<section class="card" id="quiz"><div class="meta"><span id="num"></span><span id="topic"></span></div><h2 id="question"></h2><div id="options"></div><div id="feedback" class="feedback" aria-live="polite"></div><div class="actions"><button class="action" id="next" disabled>Berikutnya →</button></div></section>
+<section class="card" id="result"><small>KUIS SELESAI</small><h2>Bagus! Kamu sudah menyelesaikan kuis 🎉</h2><div class="score" id="score"></div><p id="message"></p><p>Terus biasakan berpikir kritis, memeriksa fakta, dan bertanggung jawab saat bermedia digital.</p><button class="action" id="restart">Coba Lagi ↻</button></section><footer>Bijak bermedia · Kritis menyaring informasi · Bertanggung jawab</footer></div>
 <script>
-const buttons=[...document.querySelectorAll('.answer')];
-const feedback=document.getElementById('feedback');
-buttons.forEach(btn=>btn.addEventListener('click',()=>{
-  buttons.forEach(b=>{b.disabled=true;b.classList.remove('correct','wrong')});
-  const right=btn.dataset.value==='B';
-  document.querySelector('[data-value="B"]').classList.add('correct');
-  if(!right) btn.classList.add('wrong');
-  feedback.className='feedback show '+(right?'good':'bad');
-  feedback.innerHTML=right
-    ? '<strong>Benar! 🎉</strong><br>Periksa sumber, waktu, lokasi, dan konteks video sebelum membagikannya. Langkah ini membantu mencegah informasi keliru atau menyesatkan tersebar.'
-    : '<strong>Belum tepat.</strong><br>Jawaban yang benar adalah <strong>B</strong>. Video yang terlihat nyata belum tentu menunjukkan kejadian saat ini atau di lokasi yang disebutkan. Periksa sumber, waktu, lokasi, dan bandingkan dengan sumber tepercaya.';
-}));
-document.getElementById('retry').addEventListener('click',()=>{
-  buttons.forEach(b=>{b.disabled=false;b.classList.remove('correct','wrong')});
-  feedback.className='feedback';feedback.textContent='';
-});
-</script>
-</body>
-</html>
+const Q=[
+{t:"DIGITAL CITIZEN",q:"Kamu menemukan informasi viral yang belum jelas kebenarannya. Apa yang sebaiknya dilakukan sebelum membagikannya?",a:[
+["Langsung membagikannya agar orang lain cepat tahu.",0,"Membagikan informasi tanpa memeriksanya dapat menyebarkan kabar keliru."],
+["Memeriksa sumber dan konteksnya, lalu membandingkan dengan sumber tepercaya.",1,"Memeriksa sumber dan konteks membantu memastikan informasi lebih dapat dipercaya."],
+["Memercayainya karena banyak orang sudah membagikannya.",0,"Informasi yang viral belum tentu benar; popularitas bukan bukti kebenaran."],
+["Menambahkan keterangan sendiri meskipun faktanya belum diketahui.",0,"Menambahkan dugaan dapat membuat informasi semakin menyesatkan."]]},
+{t:"CITIZEN JOURNALISM",q:"Saat melaporkan peristiwa di lingkungan sekitar, apa yang paling penting dilakukan warga?",a:[
+["Membuat judul sensasional agar unggahan ramai.",0,"Judul sensasional dapat mengaburkan fakta."],
+["Mengunggah secepat mungkin tanpa mengecek detail.",0,"Kecepatan tidak boleh mengalahkan ketepatan informasi."],
+["Memastikan fakta, waktu, lokasi, dan konteks sebelum menyebarkan laporan.",1,"Laporan yang akurat dan terverifikasi membantu publik memahami peristiwa dengan benar."],
+["Menyampaikan dugaan pribadi seolah-olah fakta.",0,"Dugaan pribadi perlu dibedakan dari fakta yang sudah diperiksa."]]},
+{t:"PENERAPAN KEDUANYA",q:"Mengapa kita perlu bertanggung jawab saat membagikan informasi di media digital?",a:[
+["Agar setiap unggahan mendapat banyak tanda suka.",0,"Jumlah tanda suka bukan ukuran kebenaran atau tanggung jawab."],
+["Agar informasi keliru tidak ikut menyebar dan merugikan orang lain.",1,"Memeriksa informasi dan mempertimbangkan dampaknya membantu mengurangi misinformasi."],
+["Agar hanya media besar yang boleh membagikan informasi.",0,"Warga juga dapat berbagi informasi, asalkan bertanggung jawab."],
+["Agar semua informasi yang ditemukan bisa langsung dipercaya.",0,"Informasi tetap perlu dinilai secara kritis."]]}];
+let n=0,score=0,done=false;const $=x=>document.getElementById(x);
+function render(){done=false;let x=Q[n];$("num").textContent=`PERTANYAAN ${n+1} DARI 3`;$("topic").textContent=x.t;$("question").textContent=x.q;$("bar").style.width=(n/3*100)+"%";$("feedback").className="feedback";$("feedback").textContent="";$("next").disabled=true;$("next").textContent=n===2?"Lihat Hasil →":"Berikutnya →";$("options").innerHTML="";x.a.forEach((a,i)=>{let b=document.createElement("button");b.className="option";b.textContent=""+String.fromCharCode(65+i)+". "+a[0];b.onclick=()=>pick(i);$("options").appendChild(b)})}
+function pick(i){if(done)return;done=true;let x=Q[n],a=x.a[i];if(a[1])score++;[...$("options").children].forEach((b,j)=>{b.disabled=true;if(x.a[j][1])b.classList.add("correct");if(j===i&&!a[1])b.classList.add("wrong")});$("feedback").className="feedback show "+(a[1]?"good":"bad");$("feedback").textContent=(a[1]?"✨ Tepat! ":"Belum tepat. ")+a[2];$("next").disabled=false}
+$("next").onclick=()=>{if(n<2){n++;render()}else{$("quiz").style.display="none";$("result").style.display="block";$("bar").style.width="100%";$("score").textContent=score+" / 3";$("message").textContent=score===3?"Sempurna! Kamu memahami inti kedua materi.":score===2?"Bagus! Sedikit lagi—terus biasakan memeriksa fakta.":"Terima kasih sudah mencoba! Baca kembali materi dan coba lagi, ya."}};
+$("restart").onclick=()=>{n=0;score=0;$("quiz").style.display="block";$("result").style.display="none";render()};render();
+</script></html>
