@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kuis Digital Citizen</title>
+<style>
+:root{--pink:#d77d9b;--pale:#fff4f5;--cream:#fffaf0;--ink:#513c48;--green:#e8f5ec;--red:#fff0f0}
+*{box-sizing:border-box}
+body{margin:0;padding:24px;background:linear-gradient(135deg,#fff7f4,#fdeaf1);font-family:Arial,sans-serif;color:var(--ink)}
+main{max-width:760px;margin:auto;background:#fffdfb;border:1px solid #f1d7df;border-radius:22px;padding:clamp(20px,4vw,36px);box-shadow:0 10px 35px #8e52631c}
+.kicker{color:#b45d7d;font-weight:700;letter-spacing:.08em;text-transform:uppercase;font-size:.78rem}
+h1{margin:.5rem 0;font-size:clamp(1.5rem,4vw,2.2rem)}
+.intro{line-height:1.6}
+.question{font-size:1.15rem;line-height:1.55;font-weight:700;margin:24px 0 16px}
+.answers{display:grid;gap:10px}
+button.answer{width:100%;text-align:left;padding:15px 16px;border:1px solid #e8cbd5;border-radius:14px;background:#fff;color:var(--ink);font-size:1rem;line-height:1.45;cursor:pointer;transition:.15s}
+button.answer:hover:not(:disabled){border-color:var(--pink);background:#fff6f8}
+button.answer:focus-visible{outline:3px solid #d77d9b;outline-offset:2px}
+button.answer:disabled{cursor:default}
+.answer.correct{background:var(--green);border-color:#62a878}
+.answer.wrong{background:var(--red);border-color:#d77d7d}
+.feedback{margin-top:16px;padding:16px;border-radius:14px;line-height:1.6;display:none}
+.feedback.show{display:block}
+.feedback.good{background:var(--green)}
+.feedback.bad{background:var(--red)}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
+.actions button{border:0;border-radius:999px;padding:11px 18px;background:var(--pink);color:white;font-weight:700;cursor:pointer}
+.note{font-size:.86rem;color:#806b76;line-height:1.5;margin-top:22px}
+</style>
+</head>
+<body>
+<main>
+  <div class="kicker">Kuis interaktif • Digital Citizen & Citizen Journalism</div>
+  <h1>Yuk, Uji Kemampuanmu!</h1>
+  <p class="intro">Pilih satu jawaban. Setelah diklik, kamu akan langsung melihat apakah jawabanmu benar beserta penjelasannya.</p>
+  <div class="question">Jika kamu menemukan video suatu kejadian yang tidak mencantumkan waktu dan lokasi, apa yang sebaiknya dilakukan sebelum membagikannya?</div>
+  <div class="answers" id="answers">
+    <button class="answer" data-value="A">A. Langsung membagikannya agar orang lain segera tahu.</button>
+    <button class="answer" data-value="B">B. Memeriksa sumber, waktu, lokasi, dan membandingkannya dengan sumber tepercaya.</button>
+    <button class="answer" data-value="C">C. Memercayainya karena video terlihat nyata.</button>
+    <button class="answer" data-value="D">D. Menambahkan keterangan sendiri berdasarkan perkiraan.</button>
+  </div>
+  <div id="feedback" class="feedback" role="status" aria-live="polite"></div>
+  <div class="actions"><button id="retry" type="button">Coba lagi</button></div>
+  <p class="note">Kuis ini menguatkan dua materi: berpikir kritis sebagai digital citizen dan verifikasi informasi dalam citizen journalism.</p>
+</main>
+<script>
+const buttons=[...document.querySelectorAll('.answer')];
+const feedback=document.getElementById('feedback');
+buttons.forEach(btn=>btn.addEventListener('click',()=>{
+  buttons.forEach(b=>{b.disabled=true;b.classList.remove('correct','wrong')});
+  const right=btn.dataset.value==='B';
+  document.querySelector('[data-value="B"]').classList.add('correct');
+  if(!right) btn.classList.add('wrong');
+  feedback.className='feedback show '+(right?'good':'bad');
+  feedback.innerHTML=right
+    ? '<strong>Benar! 🎉</strong><br>Periksa sumber, waktu, lokasi, dan konteks video sebelum membagikannya. Langkah ini membantu mencegah informasi keliru atau menyesatkan tersebar.'
+    : '<strong>Belum tepat.</strong><br>Jawaban yang benar adalah <strong>B</strong>. Video yang terlihat nyata belum tentu menunjukkan kejadian saat ini atau di lokasi yang disebutkan. Periksa sumber, waktu, lokasi, dan bandingkan dengan sumber tepercaya.';
+}));
+document.getElementById('retry').addEventListener('click',()=>{
+  buttons.forEach(b=>{b.disabled=false;b.classList.remove('correct','wrong')});
+  feedback.className='feedback';feedback.textContent='';
+});
+</script>
+</body>
+</html>
